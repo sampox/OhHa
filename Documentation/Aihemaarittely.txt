@@ -1,0 +1,11 @@
+Aihe: Blackjack / Ventti  korttipeli
+
+Toteutetaan korttipeli, jossa pelaajalle jaetaan kaksi korttia ja sen jälkeen kysytään haluaako hän lisää vai pidättäytyä kädessään. Tavoitteena on saavuttaa korteilla yhteissumma 21, ja/tai voittaa tietokoneen eli "jakajan" käsi. Jakaja voi ottaa lisää kortteja itselleen pelaajan pysyttyä kädessään ja yrittää voittaa pelaajan käden summa.
+
+Käyttäjät: Pelaaja
+
+Kaikkien käyttäjien toiminnot: Pelaajan nimen syöttäminen, pelaaminen, voittajien tarkasteleminen (tallennettu tiedostoon).
+
+
+
+
