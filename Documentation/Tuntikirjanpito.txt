@@ -1,3 +1,9 @@
 
 Ti 15.1.-13  18.00-19.00
 Käytin noin tunnin githubiin tutustumiseen ja projektin aihemäärittelyyn ja kansioiden/tiedostojen tekemiseen.
+
+Ti 22.1.-13  14.00-15.00
+Hahmottelin luokkakaavion ja koodasin muutaman luokan (Card,Deck,Player) ohjelmaan.
+
+Ti 22.1.-13 18.00-20.00
+Koodailin lisää luokkia ja tein testipakkauksen ja -koodia.
