@@ -27,7 +27,6 @@ public class Play {
             players.add(new Player(playerName,deck.dealHand(2)));
             
         }
-        gameOn();
     }
     public void gameOn() {
         while(true) {
@@ -38,8 +37,11 @@ public class Play {
     public void playHouse() {
         while(HOUSE.getHand().getLegality()) {
         if(getTopPlayer() != null) {
+            if(getTopPlayer().getHand().getBlackjackValue() >= HOUSE.getHand().getBlackjackValue()) {
             HOUSE.getHand().addCard(deck.dealTopCard());
             System.out.println("House has hand with value of "+HOUSE.getHand().getBlackjackValue());
+            }
+            else{ break; }
         } else {
             break;
         }
@@ -74,18 +76,25 @@ public class Play {
             System.out.println("INVALID INPUT, try again!");
         }}
     }
+    public void twentyOne(Player player) {
+        if(player.getHand().getBlackjackValue() == 21) { System.out.println("21!!! "+player.getName() + " WINS!!"); 
+                System.exit(0);
+                }
+    }
     public boolean playARound() {
         boolean continueRounds = false;
-        for (Iterator<Player> it = players.iterator(); it.hasNext();) {
+        for (Iterator<Player> it = players.iterator(); it.hasNext();) { //Iterate players and see what they want to do
             Player pleijer = it.next();
             if(pleijer.getHand().getLegality()) {
-                System.out.println(pleijer.getName() +" hand has value of: " +pleijer.getHand().getBlackjackValue());
+            twentyOne(pleijer); // Check for blackjack
+            System.out.println(pleijer.getName() +" hand has value of: " +pleijer.getHand().getBlackjackValue());
             int choice = askPlayer();
             
             if(choice==1) { pleijer.getHand().addCard(deck.dealTopCard());
             continueRounds=true;
-                System.out.println(pleijer.getName()+ "hand has value of: " +pleijer.getHand().getBlackjackValue() + " now");
-            }
+                System.out.println(pleijer.getName()+ " hand has value of: " +pleijer.getHand().getBlackjackValue() + " now");
+                twentyOne(pleijer); //Check again after hand has changed
+                }                     
             else if(choice==2) {}
             else if(choice==3) System.exit(choice);
 

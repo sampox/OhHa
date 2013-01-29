@@ -62,5 +62,9 @@ public class HandTest {
         testHand.addCard(new Card(2,"Diamonds"));
         assertEquals(14,testHand.getBlackjackValue());
     }
-    
+    @Test
+    public void testLegality() {
+        testHand.addCard(new Card(10,"Diamonds"));
+        assertEquals(false,testHand.getLegality());
+    }
 }

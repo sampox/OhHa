@@ -15,6 +15,7 @@ public class Blj {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Play play = new Play(2);
+        Play play = new Play(1);
+        play.gameOn();
     }
 }

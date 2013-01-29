@@ -4,6 +4,7 @@
  */
 package logiikka;
 
+import java.io.ByteArrayInputStream;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -11,9 +12,9 @@ import static org.junit.Assert.*;
  *
  * @author b4d
  */
-public class PlayerTest {
+public class PlayTest {
     
-    public PlayerTest() {
+    public PlayTest() {
     }
 
     @BeforeClass
@@ -31,17 +32,18 @@ public class PlayerTest {
     @After
     public void tearDown() {
     }
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
+    
     @Test
-    public void testName() {
-        Player testPlayer = new Player("Nakki",new Deck().dealHand(5));
-        assertEquals("Nakki",testPlayer.getName());
-    }
-    @Test
-    public void handIsCorrect() {
-        Hand hand = new Hand();
-        hand.addCard(new Card(2,"diamonds"));
-        hand.addCard(new Card(3,"clubs"));
-        Player testPlayer = new Player("Nakki",hand);
-        assertEquals(hand,testPlayer.getHand());
+    public void getTopPlayerWorks() {
+        ByteArrayInputStream in = new ByteArrayInputStream("keke".getBytes());
+        System.setIn(in);
+        Play play = new Play(1);
+
+        assertEquals("keke",play.getTopPlayer().getName());
     }
 }
