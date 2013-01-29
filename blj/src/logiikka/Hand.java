@@ -12,7 +12,8 @@ import java.util.ArrayList;
  */
 public class Hand {
     private ArrayList<Card> cards;
-    int blackjackValue = 0;
+    private int blackjackValue = 0;
+    private int aces=0;
 
     public int getBlackjackValue() {
         return blackjackValue;
@@ -30,18 +31,23 @@ public class Hand {
         return cards;
     }
     
-    public Hand(ArrayList<Card> cards) {
-        this.cards = cards;
-        calculateBlackjackValue();
+    public Hand() {
+        this.cards = new ArrayList<Card>();
     }
     public void addCard(Card card) {
         this.cards.add(card);
-        calculateBlackjackValue();
+        if(card.getBlackjackValue()==11) {
+            if(aces>0 || this.blackjackValue+11 > 21) { aces++; this.blackjackValue+=1;}
+            else {aces++; this.blackjackValue+=card.getBlackjackValue(); }
+        }
+        else{
+        this.blackjackValue+=card.getBlackjackValue();
+        }
     }
-    private void calculateBlackjackValue() {
+ /*   private void calculateBlackjackValue() {
         this.blackjackValue=0;
         for(Card card : this.cards) {
             this.blackjackValue += card.getBlackjackValue();
         }
-    }
+    }*/
 }

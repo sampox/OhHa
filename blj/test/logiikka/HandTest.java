@@ -28,9 +28,9 @@ public class HandTest {
     
     @Before
     public void setUp() {
-        ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(new Card(1,"Spades")); cards.add(new Card(2,"Diamonds"));
-        testHand = new Hand(cards);
+        testHand = new Hand();
+        testHand.addCard(new Card(1,"Spades"));
+        testHand.addCard(new Card(1,"Diamonds"));
     }
     
     @After
@@ -59,8 +59,8 @@ public class HandTest {
     }
     @Test
     public void testBlackjackValue() {
-        testHand.addCard(new Card(13,"Diamonds"));
-        assertEquals(13,testHand.getBlackjackValue());
+        testHand.addCard(new Card(2,"Diamonds"));
+        assertEquals(14,testHand.getBlackjackValue());
     }
     
 }

@@ -32,14 +32,14 @@ public class Deck {
         if (deck.isEmpty()) {
             return null;
         }
-        ArrayList<Card> newHand = new ArrayList<Card>();
+        Hand newHand = new Hand();
         if (korttienMaara > deck.size()) {
             korttienMaara = deck.size();
         }
         for (int i=0;i<korttienMaara;i++) {
-            newHand.add(dealTopCard());
+            newHand.addCard(dealTopCard());
             }
-        return new Hand(newHand);
+        return newHand;
     }
     public Card dealTopCard() {
         if(!deck.isEmpty()) {

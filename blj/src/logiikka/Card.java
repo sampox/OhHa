@@ -36,7 +36,10 @@ public class Card {
         calculateBlackjackValue();
     }
     private void calculateBlackjackValue() {
-        if(this.value<11) {
+        if(this.value==1) {
+            this.blackjackValue=11;
+        }
+        else if(this.value<11) {
             this.blackjackValue = this.value;
         } else if(this.value < 14) {
             this.blackjackValue=10;
