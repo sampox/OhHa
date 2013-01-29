@@ -7,3 +7,9 @@ Hahmottelin luokkakaavion ja koodasin muutaman luokan (Card,Deck,Player) ohjelma
 
 Ti 22.1.-13 18.00-20.00
 Koodailin lisää luokkia ja tein testipakkauksen ja -koodia.
+
+Ti 29.1.-13 17.00-18.00
+Lisäsin luokan Play ja tein pari metodia, muutin luokkaa Card ja Hand hieman.
+
+Ti 29.1.-13 19.00-
+Pelin tekstikäyttöliittymä/pelilogiikkaluokka Play toimii nyt jotenkuten. Tein sille pari testiä ja tarkensin luokkakaaviota.

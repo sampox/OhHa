@@ -14,6 +14,7 @@ public class Hand {
     private ArrayList<Card> cards;
     private int blackjackValue = 0;
     private int aces=0;
+    private boolean handLegal = true;
 
     public int getBlackjackValue() {
         return blackjackValue;
@@ -25,6 +26,9 @@ public class Hand {
     }
     public int howManyCards() {
         return cards.size();
+    }
+    public boolean getLegality() {
+        return handLegal;
     }
 
     public ArrayList<Card> getCards() {
@@ -43,6 +47,8 @@ public class Hand {
         else{
         this.blackjackValue+=card.getBlackjackValue();
         }
+        
+        if(this.blackjackValue > 21) handLegal = false;
     }
  /*   private void calculateBlackjackValue() {
         this.blackjackValue=0;
