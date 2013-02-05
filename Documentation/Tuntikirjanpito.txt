@@ -13,3 +13,11 @@ Lisäsin luokan Play ja tein pari metodia, muutin luokkaa Card ja Hand hieman.
 
 Ti 29.1.-13 19.00-21.45 
 Koodasin pelin tekstikäyttöliittymää/pelilogiikkaluokkaa huomattavasti. Tein sille ja Hand ja Player luokille pari testiä ja tarkennuksen luokkakaaviosta. Peli toimii nyt perustasolla
+
+Ti 5.2.-13 17.00-18.00
+Suunnittelin rajapinnan IO ja luokan Winners tiedostonkäsittelyä varten. Pohdin myös Play luokan pitkien metodejen jakamista pienempiin ja koko luokan toiminnallisuuden jakamista, mutta en vielä keksinyt hyvää tapaa refaktoroida se.
+
+Ti 5.2.-13 18.00-19.30
+Koodasin edellämainitut IO ja Winners luokat ja korjailin Play luokkaa. Poistin aces-muuttujan tarpeettomana Hand luokasta ja refaktoroin sen pitkän addCard metodin kolmeen eri metodiin.
+Päivitin luokkakaavion ja lisäsin uudelleenpelaamismahdollisuuden.
+
