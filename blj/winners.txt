@@ -18,3 +18,5 @@ fasd		20
 fasd		20
 asd		20
 hdfg		18
+fasd		19
+kekekez		21

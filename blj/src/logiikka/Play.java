@@ -101,10 +101,11 @@ public class Play {
     private void askIfPlayAgain() {
         while (true) {
             try {
-                System.out.println("Play again? 1 to play again, 2 to quit");
+                System.out.println("Play again? 1 to play again, 2 to show winners, 3 to quit");
                 int choice = Integer.parseInt(lukija.nextLine());
-                if (choice > 0 && choice < 3) {
+                if (choice > 0 && choice < 4) {
                     if(choice == 1) playAgain();
+                    else if(choice == 2) getWinners();
                     else System.exit(0);
                 } else {
                     System.out.println("INVALID INPUT, try again!");
