@@ -5,7 +5,8 @@
 package tallennus;
 
 /**
- *
+ * Rajapinta voittajien tallentamiselle ja lukemiselle.
+ * 
  * @author b4d
  */
 public interface IO {

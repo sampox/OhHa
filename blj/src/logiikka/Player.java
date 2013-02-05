@@ -5,7 +5,7 @@
 package logiikka;
 
 /**
- *
+ * Luokka kuvaa pelaajaa, jolla on nimi ja käsi.
  * @author b4d
  */
 public class Player {
@@ -20,7 +20,12 @@ public class Player {
         return name;
     }
 
-    
+  /**
+ * Konstruktori luo uuden pelaajan jolla on nimi ja käsi.
+ *
+ * @param name pelaajan nimi
+ * @param hand pelaajan käsi
+ */    
     public Player(String name, Hand hand) {
         this.name = name;
         this.hand = hand;

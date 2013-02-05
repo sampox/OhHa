@@ -10,7 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Voittajat voidaan tallentaa tiedostoon ja ko tiedosto voidaan sitten lukea.
+ * 
  * @author b4d
  */
 public class Winners implements IO {
@@ -19,6 +20,11 @@ public class Winners implements IO {
     
     File tiedosto = new File("winners.txt");
     
+      /**
+ * Metodi lukee tiedoston winners.txt.
+ *
+ * @return tiedoston sisältö
+ */
     @Override
     public String lueTiedosto() {
         String sisalto= "";
@@ -33,7 +39,11 @@ public class Winners implements IO {
         }
         return sisalto;
     }
-
+  /**
+ * Metodi kirjoittaa pelin voittajan nimen ja käden arvon tiedostoon winners.txt.
+ *
+ * @param rivi voittajan nimi ja käden arvo
+ */
     @Override
     public void kirjoitaTiedostoon(String rivi) {
         try {

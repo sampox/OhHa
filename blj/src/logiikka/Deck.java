@@ -8,12 +8,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
+ * Luokka kuvaa korttipakkaa ArrayListinä Card-olioita. Pakan voi sekoittaa,
+ * siitä voi jakaa yhden tai useampia kortteja ja tarkastaa kuinka monta korttia
+ * on jäljellä.
  *
  * @author b4d
+ * 
+ *
  */
 public class Deck {
     private ArrayList<Card> deck = new ArrayList<Card>();
     
+    /**
+ * Konstruktori luo 52-korttia sisältävän pakan, jokaista kortti-maa yhdistelmää 1kpl.
+ *
+ */
     public Deck() {
         for(int i=1;i<14;i++) {
             deck.add(new Card(i,"Clubs"));
@@ -25,9 +34,20 @@ public class Deck {
     public int howManyCardsLeft() {
         return deck.size();
     }
+    /**
+ * Metodi sekoittaa korttipakan.
+ *
+ */
     public void shuffle() {
         Collections.shuffle(deck);
     }
+    /**
+ * Metodi jakaa pelaajalle käden pakasta.
+ *
+ * @see logiikka.Play#Play()
+ * @param korttienMaara kuinka monta korttia pelaajalle jaetaan (2)
+ * @return jaettu käsi
+ */
     public Hand dealHand(int korttienMaara) {
         if (deck.isEmpty()) {
             return null;
@@ -41,6 +61,14 @@ public class Deck {
             }
         return newHand;
     }
+    
+    /**
+ * Metodi jakaa pakan päällimmäisen kortin
+ * 
+ * @see logiikka.Play#playARound() 
+ * @see logiikka.Play#playHouse()
+ * @return päällimmäinen kortti tai null jos pakka on tyhjä
+ */
     public Card dealTopCard() {
         if(!deck.isEmpty()) {
            Card topCard = deck.get(deck.size()-1);

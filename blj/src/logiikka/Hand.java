@@ -7,7 +7,7 @@ package logiikka;
 import java.util.ArrayList;
 
 /**
- *
+ * Luokka kuvaa pelaajan kättä, eli kädessä olevia kortteja ja niiden arvoa. 
  * @author b4d
  */
 public class Hand {
@@ -36,16 +36,30 @@ public class Hand {
     public ArrayList<Card> getCards() {
         return cards;
     }
-
+  /**
+ * Konstruktori lue uuden käsi-olion. (Alustaa uuden ArrayList<Card> )
+ *
+ * 
+ */
     public Hand() {
         this.cards = new ArrayList<Card>();
     }
+    /**
+ * Metodi lisää annetun (pakasta otetun) kortin käteen.
+ * @see logiikka.Play#playARound() 
+ * @see logiikka.Play#playHouse() 
+ * @param card lisättävä kortti
+ */
 
     public void addCard(Card card) {
         this.cards.add(card);
         updateBlackjackValue(card);
         checkLegality();
     }
+    /**
+ * Metodi päivittää käden arvon kortin lisäyksen jälkeen.
+ *
+ */
     private void updateBlackjackValue(Card card) {
         if (card.getBlackjackValue() == 11) {
             if (this.blackjackValue + 11 > 21) {
@@ -57,6 +71,10 @@ public class Hand {
             this.blackjackValue += card.getBlackjackValue();
         }
     }
+    /**
+ * Metodi tarkistaa onko käsi blackjack käsi ts onko arvo 21 tai alle.
+ *
+ */
     private void checkLegality() {
         if (this.blackjackValue > 21) {
             handLegal = false;

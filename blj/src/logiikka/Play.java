@@ -10,7 +10,7 @@ import java.util.Scanner;
 import tallennus.Winners;
 
 /**
- *
+ * Luokassa tapahtuu tekstikäyttöliittymätoiminnot ja pelin loogiset operaatiot.
  * @author b4d
  */
 public class Play {
@@ -21,6 +21,11 @@ public class Play {
     Deck deck = new Deck();
     Winners winner = new Winners();
 
+      /**
+ * Konstruktori sekoittaa pakan ja jakaa annetulle määrälle pelaajia kädet.
+ *
+ * @param howManyPlayers pelaajien määrä
+ */ 
     public Play(int howManyPlayers) {
         deck.shuffle();
         HOUSE = new Player("House", deck.dealHand(2));
@@ -31,6 +36,11 @@ public class Play {
 
         }
     }
+      /**
+ * Metodi käynnistää pelin, pelaajien vuoro ensin, sitten talon.
+ *
+ * @see logiikka.Blj#main(java.lang.String[]) 
+ */ 
 
     public void gameOn() {
         while (true) {
@@ -66,7 +76,12 @@ public class Play {
             askIfPlayAgain();
         }
     }
-
+       /**
+ * Metodi palauttaa pelaajan, jolla on korkein laillinen käsi.
+ *
+ * @see logiikka.Play#playHouse() 
+ * @return pelaaja jolla korkein käsi
+ */ 
     public Player getTopPlayer() {
         int value = 0;
         Player top = null;

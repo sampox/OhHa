@@ -5,7 +5,8 @@
 package logiikka;
 
 /**
- *
+ * Pelin Main-luokka, aloittaa pelin kutsumalla Play-luokkaa.
+ * 
  * @author b4d
  */
 public class Blj {
