@@ -10,31 +10,31 @@ import java.util.Scanner;
 import tallennus.Winners;
 
 /**
- * Luokassa tapahtuu tekstikäyttöliittymätoiminnot ja pelin loogiset operaatiot.
+ * Luokassa tapahtuu pelin loogiset operaatiot.
  * @author b4d
  */
 public class Play {
 
-    Scanner lukija = new Scanner(System.in);
+    Scanner lukija;
     ArrayList<Player> players = new ArrayList<Player>();
-    Player HOUSE;
+    public Player HOUSE;
     Deck deck = new Deck();
     Winners winner = new Winners();
+    private boolean BLACKJACK = false;
 
       /**
  * Konstruktori sekoittaa pakan ja jakaa annetulle määrälle pelaajia kädet.
  *
  * @param howManyPlayers pelaajien määrä
  */ 
-    public Play(int howManyPlayers) {
+    public Play(ArrayList<String> playerNames, Scanner lukija) {
+        this.lukija=lukija;
         deck.shuffle();
         HOUSE = new Player("House", deck.dealHand(2));
-        for (int i = 1; i <= howManyPlayers; i++) {
-            System.out.println("Give player " + i + " name");
-            String playerName = lukija.nextLine();
+        for(String playerName : playerNames)
             players.add(new Player(playerName, deck.dealHand(2)));
 
-        }
+        
     }
       /**
  * Metodi käynnistää pelin, pelaajien vuoro ensin, sitten talon.
@@ -48,7 +48,10 @@ public class Play {
                 break;
             }
         }
-        playHouse();
+        if(getTopPlayer()!=null) { // if all the players hands aren't illegal
+            if(!BLACKJACK){ //if there isn't a player with hand of 21
+                playHouse();
+        }} else playHouse();
     }
 
     ;
@@ -56,9 +59,7 @@ public class Play {
         while (HOUSE.getHand().getLegality()) {
             if (getTopPlayer() != null) {
                 if (getTopPlayer().getHand().getBlackjackValue() >= HOUSE.getHand().getBlackjackValue()) {
-                    HOUSE.getHand().addCard(deck.dealTopCard());
-                    System.out.println("House has hand with value of " + HOUSE.getHand().getBlackjackValue());
-                    System.out.println("House's cards are: " + HOUSE.getHand().getCards());
+                   dealACardAndShowHand(HOUSE);
                 } else {
                     break;
                 }
@@ -67,14 +68,18 @@ public class Play {
             }
         }
         if (HOUSE.getHand().getLegality() == false) {
-            System.out.println(getTopPlayer().getName() + " WINS with a hand value of " + getTopPlayer().getHand().getBlackjackValue());
-            saveWinner(getTopPlayer().getName(), getTopPlayer().getHand().getBlackjackValue());
-            askIfPlayAgain();
+            playerWins(getTopPlayer());
         } else {
-            System.out.println("HOUSE WINS");
-            System.out.println("House's winning cards are: " + HOUSE.getHand().getCards());
-            askIfPlayAgain();
+            playerWins(HOUSE);
         }
+    }
+    
+    private void playerWins(Player player) {
+        playersHandAndCards(player);
+        System.out.println(player.getName() + " WINS");
+        if(!player.getName().equals("House")) 
+            saveWinner(player.getName(), player.getHand().getBlackjackValue());
+       
     }
        /**
  * Metodi palauttaa pelaajan, jolla on korkein laillinen käsi.
@@ -82,7 +87,7 @@ public class Play {
  * @see logiikka.Play#playHouse() 
  * @return pelaaja jolla korkein käsi
  */ 
-    public Player getTopPlayer() {
+    private Player getTopPlayer() {
         int value = 0;
         Player top = null;
         for (Player topPlayer : players) {
@@ -98,87 +103,68 @@ public class Play {
     }
 
     private int askPlayer() {
-        System.out.println("House has hand with value of " + HOUSE.getHand().getBlackjackValue());
+        playersHandAndCards(HOUSE);
         while (true) {
             try {
-                System.out.println("1 to get more cards, 2 to stay, 3 to quit game");
+                System.out.println("1 to get more cards\n2 to stay");
                 int choice = Integer.parseInt(lukija.nextLine());
-                if (choice > 0 && choice < 4) {
+                if (choice > 0 && choice < 3) {
                     return choice;
                 } else {
-                    System.out.println("INVALID INPUT, try again!");
+                    invalidInput();
                 }
             } catch (NumberFormatException nfe) {
-                System.out.println("INVALID INPUT, try again!");
+                invalidInput();
             }
         }
     }
-    private void askIfPlayAgain() {
-        while (true) {
-            try {
-                System.out.println("Play again? 1 to play again, 2 to show winners, 3 to quit");
-                int choice = Integer.parseInt(lukija.nextLine());
-                if (choice > 0 && choice < 4) {
-                    if(choice == 1) playAgain();
-                    else if(choice == 2) getWinners();
-                    else System.exit(0);
-                } else {
-                    System.out.println("INVALID INPUT, try again!");
-                }
-            } catch (NumberFormatException nfe) {
-                System.out.println("INVALID INPUT, try again!");
-            }
-        }
-        
+    private void invalidInput() {
+        System.out.println("INVALID INPUT, try again!");
     }
-    private void playAgain() {
-            Play play = new Play(1);
-            play.gameOn();
-    }
-
-    private void twentyOne(Player player) {
+    
+    private boolean twentyOne(Player player){
         if (player.getHand().getBlackjackValue() == 21) {
-            System.out.println("21!!! " + player.getName() + " WINS!!");
-            System.out.println(player.getName() + "'s winning cards are: " + player.getHand().getCards());
+            System.out.println("21!!! " + player.getName() + " WINS!! The winning hand:");
+            playersHandAndCards(player);
             saveWinner(getTopPlayer().getName(), getTopPlayer().getHand().getBlackjackValue());
-            askIfPlayAgain();
+            BLACKJACK = true;
+            return true;
         }
+        return false;
     }
 
     private boolean playARound() {
         boolean continueRounds = false;
-        for (Iterator<Player> it = players.iterator(); it.hasNext();) { //Iterate players and see what they want to do
-            Player pleijer = it.next();
-            if (pleijer.getHand().getLegality()) {
-                twentyOne(pleijer); // Check for blackjack
-                System.out.println(pleijer.getName() + " hand has value of: " + pleijer.getHand().getBlackjackValue());
-                System.out.println(pleijer.getName() + "'s cards are: " + pleijer.getHand().getCards());
+        for (Player pleijer : players) {
+            if (pleijer.getHand().getLegality()) { // If the hand is legal
+                if(twentyOne(pleijer)) return false; // Check for blackjack
+                playersHandAndCards(pleijer);
                 int choice = askPlayer();
 
                 if (choice == 1) {
-                    pleijer.getHand().addCard(deck.dealTopCard());
+                    dealACardAndShowHand(pleijer);
                     continueRounds = true;
-                    System.out.println(pleijer.getName() + " hand has value of: " + pleijer.getHand().getBlackjackValue() + " now");
-                    System.out.println(pleijer.getName() + "'s cards are: " + pleijer.getHand().getCards());
-                    twentyOne(pleijer); //Check for blackjack again after hand has changed
-                } else if (choice == 2) {
-                } else if (choice == 3) {
-                    System.exit(0);
+                    if(twentyOne(pleijer)) return false; //Check for blackjack again after hand has changed
                 }
-
-
             }
         }
         return continueRounds;
     }
 
-    ;
+    private void dealACardAndShowHand(Player pleijer) {
+                    pleijer.getHand().addCard(deck.dealTopCard());
+                    playersHandAndCards(pleijer);
+    }
+    private void playersHandAndCards(Player pleijer) {
+        System.out.println(pleijer.getName() + "'s cards are: " + pleijer.getHand().getCards());
+        System.out.println(pleijer.getName() + "'s hand has value of: " + pleijer.getHand().getBlackjackValue());
+    }
     
     private void saveWinner(String playerName, int handValue) {
         winner.kirjoitaTiedostoon(playerName + "\t\t" + handValue);
     }
 
-    private void getWinners() {
+    public void getWinners() {
         String winners = winner.lueTiedosto();
         System.out.println(winners);
     }

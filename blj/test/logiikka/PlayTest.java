@@ -5,6 +5,8 @@
 package logiikka;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -37,13 +39,6 @@ public class PlayTest {
     //
     // @Test
     // public void hello() {}
-    
-    @Test
-    public void getTopPlayerWorks() {
-        ByteArrayInputStream in = new ByteArrayInputStream("keke".getBytes());
-        System.setIn(in);
-        Play play = new Play(1);
 
-        assertEquals("keke",play.getTopPlayer().getName());
-    }
+
 }

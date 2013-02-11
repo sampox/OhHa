@@ -21,3 +21,5 @@ Ti 5.2.-13 18.00-19.30
 Koodasin edellämainitut IO ja Winners luokat ja korjailin Play luokkaa. Poistin aces-muuttujan tarpeettomana Hand luokasta ja refaktoroin sen pitkän addCard metodin kolmeen eri metodiin.
 Päivitin luokkakaavion ja lisäsin uudelleenpelaamismahdollisuuden.
 
+Ti 5.2.-13 20.00-22.00
+Tein sekv kaavioita ja javadoccia.

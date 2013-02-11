@@ -23,3 +23,6 @@ Päivitin luokkakaavion ja lisäsin uudelleenpelaamismahdollisuuden.
 
 Ti 5.2.-13 20.00-22.00
 Tein sekv kaavioita ja javadoccia.
+
+Su 10.2.-13 16.00-18.10
+Suunnittelin ja toteutin tekstikäyttöliittymän UI-packagessa olevaan omaan luokkaansa, samalla tuli refaktoroitua Play-luokka.

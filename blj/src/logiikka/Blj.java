@@ -4,6 +4,9 @@
  */
 package logiikka;
 
+import UI.TUI;
+import java.util.Scanner;
+
 /**
  * Pelin Main-luokka, aloittaa pelin kutsumalla Play-luokkaa.
  * 
@@ -16,7 +19,7 @@ public class Blj {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Play play = new Play(1);
-        play.gameOn();
+        Scanner lukija = new Scanner(System.in);
+        TUI Tuitui = new TUI(lukija);
     }
 }
