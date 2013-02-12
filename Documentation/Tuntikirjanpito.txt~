@@ -28,7 +28,9 @@ Su 10.2.-13 16.00-18.10
 Suunnittelin ja toteutin tekstikäyttöliittymän UI-packagessa olevaan omaan luokkaansa, samalla tuli refaktoroitua Play-luokka.
 
 Ti 12.2.-13 16.00-19.00
-Loin testausta helpottavia metodeja ohjelmaan, etenkin tiedostonkäsittelyluokkaan Winners (konstruktori testejä varten, tiedoston poisto). Tein reilusti yli puolet lisää testejä, ja testit myös Card luokalle (CardTest). Täydensin ja päivitin javadocia valtavasti. Muutin play-luokan metodeja GUI-ystävällisemmiksi (sout -> return String).
+Loin testausta helpottavia metodeja ohjelmaan, etenkin tiedostonkäsittelyluokkaan Winners (konstruktori testejä varten, tiedoston poisto). Tein reilusti yli puolet lisää unit testejä, ja testit myös Card luokalle (CardTest). Täydensin ja päivitin javadocia paljon. Muutin Play-luokan metodeja GUI-ystävällisemmiksi (sout -> return String).
 
 Ti 12.2.-13 19.00-22.00
 Tein päivitetyt versiot vanhoista sekvenssikaavioista ja luokkakaaviosta ja uuden sekvenssikaavion pelaajan tietojen syöttämiselle. Päivitin aihemäärittelyn. Tein javadocia tekstikäyttöliittymäluokalle ja luokkien attribuuteille.
+
+Suunnittelin/hahmottelin myös graafista käyttöliittymää ja tutustuin Netbeanssin Swing GUI builderiin.
