@@ -8,7 +8,7 @@ import UI.TUI;
 import java.util.Scanner;
 
 /**
- * Pelin Main-luokka, aloittaa pelin kutsumalla Play-luokkaa.
+ * Pelin Main-luokka, käynnistää ohjelman luomalla Scanner olion ja kutsumalla UI:ta.
  * 
  * @author b4d
  */

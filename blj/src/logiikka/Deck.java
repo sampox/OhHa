@@ -31,6 +31,10 @@ public class Deck {
             deck.add(new Card(i,"Hearts"));
         }
     }
+        /**
+ * Metodi kertoo pakassa olevien korttien määrän.
+ *
+ */
     public int howManyCardsLeft() {
         return deck.size();
     }
@@ -44,9 +48,9 @@ public class Deck {
     /**
  * Metodi jakaa pelaajalle käden pakasta.
  *
- * @see logiikka.Play#Play()
+ * @see logiikka.Play#Play(java.util.ArrayList, java.util.Scanner) 
  * @param korttienMaara kuinka monta korttia pelaajalle jaetaan (2)
- * @return jaettu käsi
+ * @return jaettu käsi tai null jos pakka on tyhjä
  */
     public Hand dealHand(int korttienMaara) {
         if (deck.isEmpty()) {
@@ -65,8 +69,7 @@ public class Deck {
     /**
  * Metodi jakaa pakan päällimmäisen kortin
  * 
- * @see logiikka.Play#playARound() 
- * @see logiikka.Play#playHouse()
+ * @see logiikka.Play#dealACardAndShowHand(logiikka.Player)  
  * @return päällimmäinen kortti tai null jos pakka on tyhjä
  */
     public Card dealTopCard() {

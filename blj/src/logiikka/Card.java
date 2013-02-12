@@ -35,7 +35,7 @@ public class Card {
     }
     
  /**
- * Konstruktori luo annetun arvon ja maan omaavan kortin ja laskee kutsuu sen
+ * Konstruktori luo annetun arvon ja maan omaavan kortin ja kutsuu sen
  * blackjack-arvon laskevaa metodia
  * 
  * @see logiikka.Deck#Deck() 
@@ -52,6 +52,7 @@ public class Card {
  /**
  * Metodi laskee kortin Blackjackissa käytettävän arvon
  *
+ * @see logiikka.Card#Card(int, java.lang.String) 
  */
     private void calculateBlackjackValue() {
         if(this.value==1) {

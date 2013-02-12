@@ -23,9 +23,10 @@ public class Play {
     private boolean BLACKJACK = false;
 
       /**
- * Konstruktori sekoittaa pakan ja jakaa annetulle määrälle pelaajia kädet.
+ * Konstruktori sekoittaa pakan ja jakaa jokaiselle pelaajalle käden.
  *
- * @param howManyPlayers pelaajien määrä
+ * @param playerNames pelaajien nimet ArrayListinä
+ * @param lukija luokalle välitetty Scanner-olio
  */ 
     public Play(ArrayList<String> playerNames, Scanner lukija) {
         this.lukija=lukija;
@@ -39,7 +40,7 @@ public class Play {
       /**
  * Metodi käynnistää pelin, pelaajien vuoro ensin, sitten talon.
  *
- * @see logiikka.Blj#main(java.lang.String[]) 
+ * @see UI.TUI#mainMenu()  
  */ 
 
     public void gameOn() {
@@ -54,7 +55,12 @@ public class Play {
         }} else playHouse();
     }
 
-    ;
+     /**
+ * Metodi pelaa talon vuoron. Lisää kortteja talon(HOUSE) käteen jos jollakin 
+ * pelaajalla on taloa korkeampi käsi. Lopuksi tarkistaa voittiko talo vai pelaaja.
+ *
+ * @see logiikka.Play#gameOn()   
+ */ 
     private void playHouse() {
         while (HOUSE.getHand().getLegality()) {
             if (getTopPlayer() != null) {
@@ -73,9 +79,14 @@ public class Play {
             playerWins(HOUSE);
         }
     }
-    
+     /**
+ * Metodi ilmaisee voittajan ja kutsuu voittajantallenusmetodia jos voittaja ei ole talo.
+ *
+ * @see logiikka.Play#playHouse() 
+ * @see logiikka.Play#twentyOne(logiikka.Player) 
+ */ 
     private void playerWins(Player player) {
-        playersHandAndCards(player);
+        System.out.println(playersHandAndCards(player));
         System.out.println(player.getName() + " WINS");
         if(!player.getName().equals("House")) 
             saveWinner(player.getName(), player.getHand().getBlackjackValue());
@@ -83,6 +94,8 @@ public class Play {
     }
        /**
  * Metodi palauttaa pelaajan, jolla on korkein laillinen käsi.
+ * HUOM. jos kahdella pelaajalla samanarvoinen käsi, se joka saavutti sen ensin 
+ * on topPlayer.
  *
  * @see logiikka.Play#playHouse() 
  * @return pelaaja jolla korkein käsi
@@ -101,9 +114,15 @@ public class Play {
         return top;
 
     }
-
+     /**
+ * Metodi kysyy pelaajalta haluaako hän lisää kortteja vai pitäytyä kädessään.
+ * Näyttää ensin HOUSE:n käden pelaajalle, jotta hän voi tehdä informoidun päätöksen.
+ * 
+ * @see logiikka.Play#playARound() 
+ * @return pelaajan valinnan numero
+ */ 
     private int askPlayer() {
-        playersHandAndCards(HOUSE);
+        System.out.println(playersHandAndCards(HOUSE));
         while (true) {
             try {
                 System.out.println("1 to get more cards\n2 to stay");
@@ -118,14 +137,25 @@ public class Play {
             }
         }
     }
+         /**
+ * Metodi ilmaisee virheellisen syötteen.
+ *
+ * @see logiikka.Play#askPlayer() 
+ */ 
     private void invalidInput() {
         System.out.println("INVALID INPUT, try again!");
     }
-    
+         /**
+ * Metodi kertoo, onko pelaaja saavuttanut käden arvoltaan 21. Jos on, tallennetaan voittaja
+ * ja palautetaan asetetaan BLACKJACK=true ja palautetaan true.
+ *
+ * @see logiikka.Play#playARound() 
+ * @return saavutettiinko blackjack true/false
+ */ 
     private boolean twentyOne(Player player){
         if (player.getHand().getBlackjackValue() == 21) {
             System.out.println("21!!! " + player.getName() + " WINS!! The winning hand:");
-            playersHandAndCards(player);
+            System.out.println(playersHandAndCards(player));
             saveWinner(getTopPlayer().getName(), getTopPlayer().getHand().getBlackjackValue());
             BLACKJACK = true;
             return true;
@@ -133,12 +163,19 @@ public class Play {
         return false;
     }
 
+         /**
+ * Metodissa pelataan pelikierroksia kunnes saavutetaan blackjack, kaikkien pelaajien 
+ * kädet ovat laittomia tai pelaajat ovat päättäneet pitäytyä käsissään.
+ *
+ * @see logiikka.Play#gameOn() 
+ * @return tarvitseeko kierroksia jatkaa true/false
+ */ 
     private boolean playARound() {
         boolean continueRounds = false;
         for (Player pleijer : players) {
             if (pleijer.getHand().getLegality()) { // If the hand is legal
                 if(twentyOne(pleijer)) return false; // Check for blackjack
-                playersHandAndCards(pleijer);
+                System.out.println(playersHandAndCards(pleijer));
                 int choice = askPlayer();
 
                 if (choice == 1) {
@@ -151,21 +188,45 @@ public class Play {
         return continueRounds;
     }
 
+         /**
+ * Metodi lisää pelaajan käteen pakan päällimmäisen kortin ja näyttää pelaajan päivitetyn käden.
+ *
+ * @param pleijer pelaaja jonka kättä käsitellään
+ * @see logiikka.Play#playARound() 
+ * @see logiikka.Play#playHouse()
+ */ 
     private void dealACardAndShowHand(Player pleijer) {
                     pleijer.getHand().addCard(deck.dealTopCard());
-                    playersHandAndCards(pleijer);
+                    System.out.println(playersHandAndCards(pleijer));
     }
-    private void playersHandAndCards(Player pleijer) {
-        System.out.println(pleijer.getName() + "'s cards are: " + pleijer.getHand().getCards());
-        System.out.println(pleijer.getName() + "'s hand has value of: " + pleijer.getHand().getBlackjackValue());
+         /**
+ * Metodi näyttää pelaajan käden arvon ja siinä olevat kortit.
+ *
+ * @param pleijer pelaaja jonka kättä käsitellään
+ * @see logiikka.Play#playARound() 
+ * @see logiikka.Play#dealACardAndShowHand(logiikka.Player);
+ */ 
+    private String playersHandAndCards(Player pleijer) {
+        return pleijer.getName() + "'s cards are: " + pleijer.getHand().getCards() + "\n" +
+        pleijer.getName() + "'s hand has value of: " + pleijer.getHand().getBlackjackValue();
     }
-    
+         /**
+ * Metodi hoitaa voitokkaan pelaajan ja hänen kätensä arvon tallentamisen.  
+ *
+ * @param playerName voittaneen pelaajan nimi
+ * @param handValue voittaneen käden arvo
+ * @see logiikka.Play#twentyOne(logiikka.Player)  
+ * @see logiikka.Play#playHouse()
+ */ 
     private void saveWinner(String playerName, int handValue) {
         winner.kirjoitaTiedostoon(playerName + "\t\t" + handValue);
     }
-
-    public void getWinners() {
-        String winners = winner.lueTiedosto();
-        System.out.println(winners);
+     /**
+ * Metodi lukee voittajat sisältävän tiedoston ja palauttaa sen sisällön.
+ * 
+ * @see UI.TUI#mainMenu() 
+ */ 
+    public String getWinners() {
+        return winner.lueTiedosto();
     }
 }

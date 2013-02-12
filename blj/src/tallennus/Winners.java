@@ -16,12 +16,34 @@ import java.util.logging.Logger;
  */
 public class Winners implements IO {
 
-    public Winners() {}
-    
-    File tiedosto = new File("winners.txt");
+    File tiedosto;
+    private final String winnersFile = "winners.txt";
     
       /**
- * Metodi lukee tiedoston winners.txt.
+ * Konstruktori asettaa luokassa käsiteltäväksi tiedostoksi winners.txt tiedoston.
+ *
+ */
+    public Winners() {
+        tiedosto = new File(winnersFile);
+    }
+      /**
+ * Tämä konstruktori asettaa parametrina annetun tiedostonnimen luokassa käsiteltäväksi tiedostoksi,
+ * winners.txt tiedoston sijaan. Testauskäyttöä varten.
+ *
+ */
+    public Winners(String fileName) {
+        tiedosto = new File(fileName);
+        try {
+            tiedosto.createNewFile();
+        } catch (IOException ex) {
+            Logger.getLogger(Winners.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+
+    
+      /**
+ * Metodi lukee tiedoston winners.txt. Tai minkä tahansa muunkin tiedoston toisen konstruktorin tapauksessa.
  *
  * @return tiedoston sisältö
  */
@@ -40,7 +62,8 @@ public class Winners implements IO {
         return sisalto;
     }
   /**
- * Metodi kirjoittaa pelin voittajan nimen ja käden arvon tiedostoon winners.txt.
+ * Metodi kirjoittaa pelin voittajan nimen ja käden arvon tiedostoon. 
+ * Tai minkä tahansa muunkin String-olion testauskäytössä.
  *
  * @param rivi voittajan nimi ja käden arvo
  */
@@ -54,6 +77,15 @@ public class Winners implements IO {
         } catch (IOException ex) {
             Logger.getLogger(Winners.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+      /**
+ * Metodi poistaa tiedoston jota luokka käsittelee, tarvitaan testitiedostojen 
+ * poistoon testien jälkeen. 
+ *
+ */
+    public void deleteFile() {
+        tiedosto.delete();
     }
     
 }

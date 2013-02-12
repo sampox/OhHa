@@ -4,6 +4,8 @@
  */
 package logiikka;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -44,6 +46,20 @@ public class DeckTest {
         assertEquals(52,testDeck.howManyCardsLeft());
     }
     @Test
+    public void testDeckHasTheRightCards() {
+        for(int i=13;i>0;i--) {
+            assertEquals(testDeck.dealTopCard().toString(),(i + " of Hearts"));
+            assertEquals(testDeck.dealTopCard().toString(), (i + " of Spades"));
+            assertEquals(testDeck.dealTopCard().toString(),(i + " of Diamonds"));
+            assertEquals(testDeck.dealTopCard().toString(),(i + " of Clubs"));
+        }
+    }
+    @Test
+    public void testConstructorExplicitly() {
+        testDeck = new Deck();
+        assertEquals(52,testDeck.howManyCardsLeft());
+    }
+    @Test
     public void testTakingOneCard() {
         testDeck.dealTopCard();
         assertEquals(51,testDeck.howManyCardsLeft());
@@ -59,9 +75,11 @@ public class DeckTest {
         assertEquals(null,testDeck.dealTopCard());
     }
     @Test
-    public void doNotDealOverDeckSize() {
-        testDeck.dealHand(53);
+    public void doNotDealOrAddToHandOverDeckSize() {
+        Hand hand=testDeck.dealHand(53);
         assertEquals(0,testDeck.howManyCardsLeft());
+        assertEquals(52, hand.howManyCards());
     }
+    
 
 }

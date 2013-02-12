@@ -29,7 +29,7 @@ public class TUI {
                         play = new Play(playerNames(howManyPlayers()),lukija);
                         play.gameOn();
                     }
-                    else if(choice == 2) play.getWinners();
+                    else if(choice == 2) System.out.println(play.getWinners());
                     else System.exit(0);
         }
      

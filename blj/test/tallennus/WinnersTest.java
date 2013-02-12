@@ -4,8 +4,8 @@
  */
 package tallennus;
 
+import static org.junit.Assert.assertEquals;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -28,10 +28,13 @@ public class WinnersTest {
     @Before
     public void setUp() {
         winners = new Winners();
+        
     }
     
     @After
     public void tearDown() {
+       if(!winners.tiedosto.getName().equals("winners.txt"))
+        winners.deleteFile();
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -40,14 +43,24 @@ public class WinnersTest {
     // public void hello() {}
     @Test
     public void testaaLukeminenJaPalauttaakoSisaltoa() {
-        String test = winners.lueTiedosto();
-        assertEquals(test.isEmpty(),false);
+        assertEquals(winners.lueTiedosto().isEmpty(),false);
     }
     @Test
     public void testaaKirjoitus() {
         String test = (int)(Math.random()*10000)+"\t\t3";
         winners.kirjoitaTiedostoon(test);
-        String tiedostonSisalto = winners.lueTiedosto();
-        assertEquals(tiedostonSisalto.contains(test),true);
+        assertEquals(winners.lueTiedosto().contains(test),true);
+    }
+    @Test
+    public void testaaLukeminenUudellaTestitiedostolla() {
+        winners = new Winners(""+Math.random()*10000);
+        assertEquals(winners.lueTiedosto().isEmpty(),true);
+    }
+    @Test
+    public void testaaKirjoitusUudellaTestitiedostolla() {
+        winners = new Winners(""+Math.random()*10000);
+        String test = (int)(Math.random()*10000)+"kekeg";
+        winners.kirjoitaTiedostoon(test);
+        assertEquals(winners.lueTiedosto().contains(test),true);
     }
 }

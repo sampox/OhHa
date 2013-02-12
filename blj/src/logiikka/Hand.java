@@ -46,8 +46,7 @@ public class Hand {
     }
     /**
  * Metodi lisää annetun (pakasta otetun) kortin käteen.
- * @see logiikka.Play#playARound() 
- * @see logiikka.Play#playHouse() 
+ * @see logiikka.Play#dealACardAndShowHand(logiikka.Player)  
  * @param card lisättävä kortti
  */
 
@@ -58,6 +57,9 @@ public class Hand {
     }
     /**
  * Metodi päivittää käden arvon kortin lisäyksen jälkeen.
+ * 
+ * @param card käteen lisätty kortti
+ * @see logiikka.Hand#addCard(logiikka.Card) 
  *
  */
     private void updateBlackjackValue(Card card) {
@@ -72,8 +74,9 @@ public class Hand {
         }
     }
     /**
- * Metodi tarkistaa onko käsi blackjack käsi ts onko arvo 21 tai alle.
+ * Metodi tarkistaa onko käsi validi blackjack käsi ts onko arvo 21 tai alle.
  *
+ * @see logiikka.Hand#addCard(logiikka.Card) 
  */
     private void checkLegality() {
         if (this.blackjackValue > 21) {
