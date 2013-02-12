@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import org.junit.*;
 import static org.junit.Assert.*;
+import tallennus.Winners;
 
 /**
  *
  * @author b4d
  */
 public class PlayTest {
+    Play play = new Play(new ArrayList<String>(),new Scanner(System.in));
     
     public PlayTest() {
     }
@@ -40,5 +42,15 @@ public class PlayTest {
     // @Test
     // public void hello() {}
 
-
+    @Test
+    public void getWinnersWorks() {
+        Winners winner = new Winners();
+        assertEquals(winner.lueTiedosto(),play.getWinners());
+    }
+    
+    @Test
+    public void playersHandAndCardsWorks() {
+        assertEquals(play.playersHandAndCards(new Player("keke",new Hand())),"keke's cards are: []\nkeke's hand has value of: 0");
+    }
+    
 }

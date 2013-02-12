@@ -15,11 +15,29 @@ import tallennus.Winners;
  */
 public class Play {
 
+    /**
+ * Scanner-olio käyttäjän syötteen lukemiseen.
+ */
     Scanner lukija;
+    /**
+ * Lista (ihmis)pelaajista.
+ */
     ArrayList<Player> players = new ArrayList<Player>();
-    public Player HOUSE;
+    /**
+ * "jakaja" eli talo, tietokonepelaaja, jota vastaan ihmispelaajat pelaavat.
+ */
+    private Player HOUSE;
+    /**
+ * 52-korttinen pakka jota pelissä käytetään.
+ */
     Deck deck = new Deck();
+    /**
+ * Voittajien tallenus hoidetaan tämän olion avulla.
+ */
     Winners winner = new Winners();
+    /**
+ * boolean arvo joka kertoo onko jokin pelaaja saavuttanut kädellään arvon 21.
+ */
     private boolean BLACKJACK = false;
 
       /**
@@ -206,7 +224,7 @@ public class Play {
  * @see logiikka.Play#playARound() 
  * @see logiikka.Play#dealACardAndShowHand(logiikka.Player);
  */ 
-    private String playersHandAndCards(Player pleijer) {
+   public String playersHandAndCards(Player pleijer) {
         return pleijer.getName() + "'s cards are: " + pleijer.getHand().getCards() + "\n" +
         pleijer.getName() + "'s hand has value of: " + pleijer.getHand().getBlackjackValue();
     }

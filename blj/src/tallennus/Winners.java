@@ -15,8 +15,13 @@ import java.util.logging.Logger;
  * @author b4d
  */
 public class Winners implements IO {
-
+    /**
+ * File-olio jota luokan metodit käsittelevät.
+ */
     File tiedosto;
+        /**
+ * String-olio joka sisältää tiedostopolun tiedostoon johon kirjataan/josta luetaan voittajat.
+ */
     private final String winnersFile = "winners.txt";
     
       /**

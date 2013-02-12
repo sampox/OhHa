@@ -11,8 +11,17 @@ package logiikka;
  * @author b4d
  */
 public class Card {
+        /**
+ * Kortin oikea arvo (1-13)
+ */
     private int value;
+        /**
+ * Kortin maa
+ */
     private String suit;
+        /**
+ * Kortin blackjackissä käytettävä arvo, 2-11 (ässä erikoistapauksissa 1, mutta siitä ei välitetä tässä luokassa)
+ */
     private int blackjackValue;
     
     @Override

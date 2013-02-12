@@ -9,7 +9,13 @@ package logiikka;
  * @author b4d
  */
 public class Player {
+        /**
+ * Hand-olio, joka kuvaa pelaajan kättä (siinä olevia kortteja ja niiden arvoa).
+ */
     private Hand hand;
+        /**
+ * Pelaajan nimi.
+ */
     private String name;
     
     public Hand getHand() {

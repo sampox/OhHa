@@ -17,6 +17,9 @@ import java.util.Collections;
  *
  */
 public class Deck {
+        /**
+ * Pakka koostuu listasta Card-olioita
+ */
     private ArrayList<Card> deck = new ArrayList<Card>();
     
     /**

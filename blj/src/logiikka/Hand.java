@@ -12,8 +12,17 @@ import java.util.ArrayList;
  */
 public class Hand {
 
+        /**
+ * Kädessä olevat kortit.
+ */
     private ArrayList<Card> cards;
+        /**
+ * Käden blackjackissä käytettävä arvo.
+ */
     private int blackjackValue = 0;
+        /**
+ * boolean siitä onko käden arvo vielä alle 21, eli onko käsi laillinen blacjack käsi.
+ */
     private boolean handLegal = true;
 
     public int getBlackjackValue() {
