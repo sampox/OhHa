@@ -4,6 +4,10 @@
  */
 package logiikka;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -14,7 +18,6 @@ import tallennus.Winners;
  * @author b4d
  */
 public class Play {
-
     /**
  * Scanner-olio käyttäjän syötteen lukemiseen.
  */
@@ -26,7 +29,7 @@ public class Play {
     /**
  * "jakaja" eli talo, tietokonepelaaja, jota vastaan ihmispelaajat pelaavat.
  */
-    private Player HOUSE;
+    public Player HOUSE;
     /**
  * 52-korttinen pakka jota pelissä käytetään.
  */
@@ -55,16 +58,16 @@ public class Play {
 
         
     }
+
       /**
  * Metodi käynnistää pelin, pelaajien vuoro ensin, sitten talon.
  *
  * @see UI.TUI#mainMenu()  
  */ 
-
     public void gameOn() {
         while (true) {
             if (!playARound()) {
-                break;
+                     break;
             }
         }
         if(getTopPlayer()!=null) { // if all the players hands aren't illegal
@@ -104,6 +107,7 @@ public class Play {
  * @see logiikka.Play#twentyOne(logiikka.Player) 
  */ 
     private void playerWins(Player player) {
+        System.out.println("");
         System.out.println(playersHandAndCards(player));
         System.out.println(player.getName() + " WINS");
         if(!player.getName().equals("House")) 
@@ -198,9 +202,10 @@ public class Play {
 
                 if (choice == 1) {
                     dealACardAndShowHand(pleijer);
+                    System.out.println("");
                     continueRounds = true;
                     if(twentyOne(pleijer)) return false; //Check for blackjack again after hand has changed
-                }
+                } else System.out.println("");
             }
         }
         return continueRounds;
@@ -225,8 +230,13 @@ public class Play {
  * @see logiikka.Play#dealACardAndShowHand(logiikka.Player);
  */ 
    public String playersHandAndCards(Player pleijer) {
+      String legality = "legal.";
+      if(!pleijer.getHand().getLegality()) {
+          legality = "ILLEGAL. " + pleijer.getName() +" is out of the game!";
+      }
         return pleijer.getName() + "'s cards are: " + pleijer.getHand().getCards() + "\n" +
-        pleijer.getName() + "'s hand has value of: " + pleijer.getHand().getBlackjackValue();
+        pleijer.getName() + "'s hand has value of: " + pleijer.getHand().getBlackjackValue() +"\n" +
+        pleijer.getName() +"'s hand is " +legality;
     }
          /**
  * Metodi hoitaa voitokkaan pelaajan ja hänen kätensä arvon tallentamisen.  
@@ -247,4 +257,6 @@ public class Play {
     public String getWinners() {
         return winner.lueTiedosto();
     }
+ 
+            
 }

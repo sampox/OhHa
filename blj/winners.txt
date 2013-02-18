@@ -1,3 +1,8 @@
 Player		Winning hand
 g		21
 ggjk		19
+asd		19
+3		21
+4		21
+ds		20
+asd		20

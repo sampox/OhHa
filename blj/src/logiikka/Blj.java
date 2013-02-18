@@ -1,14 +1,20 @@
+
+
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package logiikka;
 
-import UI.TUI;
-import java.util.Scanner;
+import UI.GUI;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
- * Pelin Main-luokka, käynnistää ohjelman luomalla Scanner olion ja kutsumalla UI:ta.
+ * Pelin Main-luokka, käynnistää ohjelman kutsumalla UI:ta.
  * 
  * @author b4d
  */
@@ -19,7 +25,12 @@ public class Blj {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Scanner lukija = new Scanner(System.in);
-        TUI Tuitui = new TUI(lukija);
+        GUI freim = new GUI();
+        try {
+            GUI.main(args);
+        } catch (IOException ex) {
+            Logger.getLogger(Blj.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
