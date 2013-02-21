@@ -117,24 +117,31 @@ public class Play {
     }
        /**
  * Metodi palauttaa pelaajan, jolla on korkein laillinen käsi.
- * HUOM. jos kahdella pelaajalla samanarvoinen käsi, se joka saavutti sen ensin 
- * on topPlayer.
+ * HUOM. jos kahdella pelaajalla samanarvoinen käsi, se joka saavutti sen pienemmällä
+ * määrällä kortteja on topPlayer. Jos korttienkin määrä on sama niin ensimmäisenä ArrayListissä
+ * oleva on topPlayer (koska sille on jaettu ensin kortteja, joten tavallaan se on saavuttanut käden ensin).
  *
  * @see logiikka.Play#playHouse() 
  * @return pelaaja jolla korkein käsi
  */ 
     private Player getTopPlayer() {
         int value = 0;
-        Player top = null;
-        for (Player topPlayer : players) {
-            if (topPlayer.getHand().getLegality()) {
-                if (topPlayer.getHand().getBlackjackValue() > value) {
-                    value = topPlayer.getHand().getBlackjackValue();
-                    top = topPlayer;
+        Player topPlayer = null;
+        for (Player pleijer : players) {
+            if (pleijer.getHand().getLegality()) {
+                if (pleijer.getHand().getBlackjackValue() > value) {
+                    value = pleijer.getHand().getBlackjackValue();
+                    topPlayer = pleijer;
                 }
+                if(pleijer.getHand().getBlackjackValue() == value) {
+                    if(topPlayer!=null) {
+                        if(pleijer.getHand().howManyCards() < topPlayer.getHand().howManyCards()) {
+                            topPlayer=pleijer;
+                        }
+                }}
             }
         }
-        return top;
+        return topPlayer;
 
     }
      /**
