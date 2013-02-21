@@ -50,7 +50,7 @@ public class PlayTest {
     
     @Test
     public void playersHandAndCardsWorks() {
-        assertEquals(play.playersHandAndCards(new Player("keke",new Hand())),"keke's cards are: []\nkeke's hand has value of: 0");
+        assertEquals(play.playersHandAndCards(new Player("keke",new Hand())),"keke's cards are: []\nkeke's hand has value of: 0\nkeke's hand is legal.");
     }
     
 }
