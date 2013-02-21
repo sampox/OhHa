@@ -46,3 +46,6 @@ Tein pieniä päivityksiä ohjelmaan mm. virheiden käsittelyyn, javadociin ja m
 
 To 21.2.-13 11.40-11.55
 Korjasin bugin ohjelman Play-luokasta ja GUI:sta.
+
+To 21.2.-13 16.30-16.40
+Keksin laajennusideoita peliin.
