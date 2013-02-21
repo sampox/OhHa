@@ -1,0 +1,5 @@
+Ohjelman logiikka package koostuu Play-luokasta, joka käyttää Card-luokan olioista koostuvaa Deck-luokan oliota, ja Player-luokan olioista koostuvaa listaa pelaajista. Player-luokan oliot itsessään pitävät sisällään Hand-luokan olion, joka koostuu Card-luokan olioista samaan tapaan kuin Deck. Blj-luokka on ohjelman main-luokka, joka käynnistää ohjelman.
+
+Ohjelman tallennus package koostuu IO-rajapinnan toteuttavasta Winners-luokasta, joka hoitaa ohjelman tiedostonkäsittelypuolen.
+
+Ohjelman UI package koostuu TUI-luokasta, joka toteuttaa pelille tekstikäyttöliittymän, ja GUI-luokasta, joka toteuttaa pelille graafisen käyttöliittymän. 

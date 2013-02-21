@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 
 /**
- * Pelin Main-luokka, käynnistää ohjelman kutsumalla UI:ta.
+ * Pelin Main-luokka, käynnistää ohjelman kutsumalla GUI:ta.
  * 
  * @author b4d
  */
@@ -29,7 +29,13 @@ public class Blj {
         try {
             GUI.main(args);
         } catch (IOException ex) {
-            Logger.getLogger(Blj.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Blj.class.getName()).log(Level.SEVERE, "SOMETHING WENT TERRIBLY WRONG WITH THE PROGRAM'S I/O! CONTACT GAME DEVELOPER AND SYSTEM ADMIN IMMEDIATELY!");
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException ex1) {
+                Thread.currentThread().interrupt();
+            }
+            System.exit(1);
         }
         
     }

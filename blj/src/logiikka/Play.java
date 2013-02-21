@@ -46,6 +46,7 @@ public class Play {
       /**
  * Konstruktori sekoittaa pakan ja jakaa jokaiselle pelaajalle käden.
  *
+ * @see UI.TUI#play
  * @param playerNames pelaajien nimet ArrayListinä
  * @param lukija luokalle välitetty Scanner-olio
  */ 
@@ -223,7 +224,7 @@ public class Play {
                     System.out.println(playersHandAndCards(pleijer));
     }
          /**
- * Metodi näyttää pelaajan käden arvon ja siinä olevat kortit.
+ * Metodi näyttää pelaajan käden arvon, siinä olevat kortit ja käden laillisuuden.
  *
  * @param pleijer pelaaja jonka kättä käsitellään
  * @see logiikka.Play#playARound() 

@@ -48,7 +48,7 @@ public class Hand {
   /**
  * Konstruktori lue uuden käsi-olion. (Alustaa uuden ArrayList<Card> )
  *
- * 
+ * @see logiikka.Deck#dealHand(int) 
  */
     public Hand() {
         this.cards = new ArrayList<Card>();
@@ -65,7 +65,7 @@ public class Hand {
         checkLegality();
     }
     /**
- * Metodi päivittää käden arvon kortin lisäyksen jälkeen.
+ * Metodi päivittää käden (blackjack)arvon kortin lisäyksen jälkeen.
  * 
  * @param card käteen lisätty kortti
  * @see logiikka.Hand#addCard(logiikka.Card) 

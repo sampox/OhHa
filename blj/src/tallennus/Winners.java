@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Voittajat voidaan tallentaa tiedostoon ja ko tiedosto voidaan sitten lukea.
+ * Luokka hoitaa ohjelman tiedostonkäsittelytarpeet, lähinnä voittajien tallenuksen ja lukemisen.
  * 
  * @author b4d
  */
@@ -25,11 +25,20 @@ public class Winners implements IO {
     private final String winnersFile = "winners.txt";
     
       /**
- * Konstruktori asettaa luokassa käsiteltäväksi tiedostoksi winners.txt tiedoston.
+ * Konstruktori asettaa luokassa käsiteltäväksi tiedostoksi winners.txt tiedoston. Jos tiedostoa ei ole olemassa, se luodaan.
  *
+ * @see logiikka.Play#winner
  */
     public Winners() {
         tiedosto = new File(winnersFile);
+        if(!tiedosto.exists())
+            try {
+            tiedosto.createNewFile();
+            kirjoitaTiedostoon("Player:\t\tHand value:");
+        } catch (IOException ex) {
+            handleException("");
+        }
+    
     }
       /**
  * Tämä konstruktori asettaa parametrina annetun tiedostonnimen luokassa käsiteltäväksi tiedostoksi,
@@ -41,7 +50,7 @@ public class Winners implements IO {
         try {
             tiedosto.createNewFile();
         } catch (IOException ex) {
-            Logger.getLogger(Winners.class.getName()).log(Level.SEVERE, null, ex);
+            handleException("");
         }
     }
     
@@ -50,6 +59,7 @@ public class Winners implements IO {
       /**
  * Metodi lukee tiedoston winners.txt. Tai minkä tahansa muunkin tiedoston toisen konstruktorin tapauksessa.
  *
+ * @see logiikka.Play#getWinners() 
  * @return tiedoston sisältö
  */
     @Override
@@ -62,7 +72,7 @@ public class Winners implements IO {
             }
             lukija.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Winners.class.getName()).log(Level.SEVERE, null, ex);
+            handleException("SPECIFIC PROBLEM: FILE NOT FOUND");
         }
         return sisalto;
     }
@@ -70,6 +80,7 @@ public class Winners implements IO {
  * Metodi kirjoittaa pelin voittajan nimen ja käden arvon tiedostoon. 
  * Tai minkä tahansa muunkin String-olion testauskäytössä.
  *
+ * @see logiikka.Play#saveWinner(java.lang.String, int) 
  * @param rivi voittajan nimi ja käden arvo
  */
     @Override
@@ -80,7 +91,7 @@ public class Winners implements IO {
             output.append(rivi+"\n");
             output.close();
         } catch (IOException ex) {
-            Logger.getLogger(Winners.class.getName()).log(Level.SEVERE, null, ex);
+            handleException("");
         }
     }
     
@@ -93,4 +104,23 @@ public class Winners implements IO {
         tiedosto.delete();
     }
     
+    /**
+    * Metodi virheiden käsittelyä varten, käyttäjä saa virheilmoituksen, ohjelma odottaa 4 sek ja sulkeutuu.
+    *
+    * @see tallennus.Winners#Winners() 
+    * @see tallennus.Winners#Winners(java.lang.String) 
+    * @see tallennus.Winners#kirjoitaTiedostoon(java.lang.String) 
+    * @see tallennus.Winners#lueTiedosto() 
+    * @param message String olio jossa on viesti jos virhe ei ole normaali IOException 
+    */
+    private void handleException(String message) {
+        Logger.getLogger(Winners.class.getName()).log(Level.SEVERE, "EXCEPTION - SOMETHING IS WRONG WITH THE FILE: {0} !!!", tiedosto.getName());
+        System.out.println(message);
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        System.exit(1);
+    }
 }

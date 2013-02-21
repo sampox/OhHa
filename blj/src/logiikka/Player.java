@@ -29,6 +29,7 @@ public class Player {
   /**
  * Konstruktori luo uuden pelaajan jolla on nimi ja käsi.
  *
+ * @see logiikka.Play#Play(java.util.ArrayList, java.util.Scanner) 
  * @param name pelaajan nimi
  * @param hand pelaajan käsi
  */    

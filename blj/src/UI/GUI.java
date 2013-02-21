@@ -13,18 +13,26 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Luokka toteuttaa Graafisen käyttöliittymän pelille.
  * @author b4d
  */
 public class GUI extends javax.swing.JFrame {
-
+/**
+     * PipedOutputStream olio käyttäjän syötteen välittämiseksi tekstikäyttöliittymälle.
+     */
     private static PipedOutputStream output = new PipedOutputStream();
+    /**
+     * Printwriter olio jolla kirjoitetaan PipedOutputStreamiin.
+     */
     private final PrintWriter writer = new PrintWriter(output);
+    /**
+     * Tekstikäyttöliittymäolio pelin pelaamiseksi.
+     */
     private static TUI tuitui;
 
     
     /**
-     * Creates new form NewJFrame1
+     * Luo GUI:n. Creates new form NewJFrame1
      */
     
     public GUI() {
@@ -67,14 +75,12 @@ public class GUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(374, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,13 +144,17 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * Metodi välittää tekstikentästä saadun tekstin TUI:lle.
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         writer.println(jTextField1.getText());
         writer.flush();
         jTextField1.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
-
+/**
+     * Jos tekstikentässä painetaan enter, välitetään teksti TUI:lle.
+     */
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -153,7 +163,9 @@ public class GUI extends javax.swing.JFrame {
             jTextField1.setText("");
         }
     }//GEN-LAST:event_jTextField1KeyPressed
-
+/**
+     * Kun tekstikenttää klikataan, nollataan sen tekstit.
+     */
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
         // TODO add your handling code here:
         jTextField1.setText("");
@@ -204,7 +216,7 @@ public class GUI extends javax.swing.JFrame {
                 new GUI().setVisible(true);
             }
         });
-        redirectSystemStreams();
+        redirectSystemOutAndErr();
         tuitui = new TUI(output);
         
     }
@@ -217,7 +229,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-
+/**
+     * Metodi päivittää tekstialuetta.
+     */
 private static void updateTextArea(final String text) {
   SwingUtilities.invokeLater(new Runnable() {
     public void run() {
@@ -226,25 +240,24 @@ private static void updateTextArea(final String text) {
   });
   
 }
- 
-private static void redirectSystemStreams() {
+ /**
+     * Metodi ohjaa System.outin ja System.errin tekstialueelle.
+     */
+private static void redirectSystemOutAndErr() {
   OutputStream out = new OutputStream() {
     @Override
     public void write(int b) throws IOException {
       updateTextArea(String.valueOf((char) b));
     }
- 
     @Override
     public void write(byte[] b, int off, int len) throws IOException {
       updateTextArea(new String(b, off, len));
     }
- 
     @Override
     public void write(byte[] b) throws IOException {
       write(b, 0, b.length);
     }
   };
- 
   System.setOut(new PrintStream(out, true));
   System.setErr(new PrintStream(out, true));
 }

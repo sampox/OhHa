@@ -34,3 +34,12 @@ Ti 12.2.-13 19.00-21.45
 Tein päivitetyt versiot vanhoista sekvenssikaavioista ja luokkakaaviosta ja uuden sekvenssikaavion pelaajan tietojen syöttämiselle. Päivitin aihemäärittelyn. Tein javadocia tekstikäyttöliittymäluokalle ja luokkien attribuuteille.
 
 Suunnittelin/hahmottelin myös graafista käyttöliittymää ja tutustuin Netbeanssin Swing GUI builderiin.
+
+Ma 18.2.-13 00.00-03.40
+Tein yksinkertaisen GUI:n ohjelmalle.
+
+Ke 20.2.-13 19.50-20.00
+Tein viimeisimmän version luokkakaaviosta.
+
+To 21.2.-13 00.10-01.20
+Tein pieniä muutoksia ohjelmaan mm. virheiden käsittelyyn, javadociin ja muuhun dokumentaatioon. Tein käyttöohjeen pelille. Tein .jar tiedoston.
