@@ -6,6 +6,6 @@ Kun ohjelma on käynnistynyt, tulee eteesi lyhyehköt ohjeet pelin tarkoituksest
 
 Tämän jälkeen ruudulla näkyy menu, joka pyytää sinua syöttämään numeron joka vastaa tiettyä toimintaa. Syötä tekstialueen alla olevaan tekstikenttään 1 jos haluat aloittaa pelin, 2 jos haluat tarkastella voittajia, 3 jos haluat lopettaa pelin. Paina sitten enter tai klikkaa ok-nappulaa.
 Jos syötit 2 näytetään sinulle voittajat (tai tyhjä tiedosto jossa lukee Player:		Hand Value:    jos voittajia ei vielä ole) ja palaat takaisin alkumenuun.
-Jos syötit 1 alkaa peli ja sinua pyydetään pelaajien määrä lukuna väliltä 1-8 ja sitten pelaajien nimet edellisen menun tapaan. Tämän jälkeen pääsee pelaamaan ja pelaajan tulee syöttää 1 tai 2 ja painaa enter/OK-nappia riippuen siitä mitä hän haluaa tehdä kädelleen. 1 jos haluaa lisää kortteja, 2 jos ei. Tätä jatkuu kunnes joku saa käden arvon 21 tai tulee talon vuoro. Pelin päättyessä alkumenu tulee taas näkyviin.
+Jos syötit 1 alkaa peli ja sinulta pyydetään pelaajien määrä lukuna väliltä 1-8 ja sitten pelaajien nimet edellisen menun tapaan. Tämän jälkeen pääsee pelaamaan ja pelaajan tulee syöttää 1 tai 2 ja painaa enter/OK-nappia riippuen siitä mitä hän haluaa tehdä kädelleen. 1 jos haluaa lisää kortteja, 2 jos ei. Tätä jatkuu kunnes joku saa käden arvon 21 tai tulee talon vuoro. Tämän jälkeen saa tietää kuka voitti. Jos pelaaja voitti, tulee hänen nimensä ja kätensä arvo voittajien listalle. Pelin päättyessä alkumenu tulee taas näkyviin.
 
 Pelin voi lopettaa missä vaiheessa tahansa painamalla oikean yläkulman ruksia.

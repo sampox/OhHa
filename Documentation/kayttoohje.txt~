@@ -1,0 +1,11 @@
+blj ohjelman käyttöohje:
+
+Ohjelma on yksinkertainen käyttää. Kunhan olet löytänyt minne tallensit blj.jar tiedoston, suorita se tuplaklikkaamalla sitä tai ubuntussa klikkaa sitä oikealla hiiren painikkeella ja valitse Open with Sun Java Runtime. (jos et saa ohjelmaa auki ja käytät ubuntua, klikkaa tiedostoa oikealla hiiren painikkeella, valitse "properties"/"ominaisuudet" ja mene "permissions"/"käyttöoikeudet" välilehdelle. Laita siellä rasti kohtaan "Allow executing file as program"/"Salli ohjelman suorittaminen".)
+
+Kun ohjelma on käynnistynyt, tulee eteesi lyhyehköt ohjeet pelin tarkoituksesta, joka on siis kerätä ensimmäisenä korteista käsi jonka arvo on 21 tai alle, mutta suurempi kuin muilla pelaajilla ja talolla(HOUSE).
+
+Tämän jälkeen ruudulla näkyy menu, joka pyytää sinua syöttämään numeron joka vastaa tiettyä toimintaa. Syötä tekstialueen alla olevaan tekstikenttään 1 jos haluat aloittaa pelin, 2 jos haluat tarkastella voittajia, 3 jos haluat lopettaa pelin. Paina sitten enter tai klikkaa ok-nappulaa.
+Jos syötit 2 näytetään sinulle voittajat (tai tyhjä tiedosto jossa lukee Player:		Hand Value:    jos voittajia ei vielä ole) ja palaat takaisin alkumenuun.
+Jos syötit 1 alkaa peli ja sinua pyydetään pelaajien määrä lukuna väliltä 1-8 ja sitten pelaajien nimet edellisen menun tapaan. Tämän jälkeen pääsee pelaamaan ja pelaajan tulee syöttää 1 tai 2 ja painaa enter/OK-nappia riippuen siitä mitä hän haluaa tehdä kädelleen. 1 jos haluaa lisää kortteja, 2 jos ei. Tätä jatkuu kunnes joku saa käden arvon 21 tai tulee talon vuoro. Pelin päättyessä alkumenu tulee taas näkyviin.
+
+Pelin voi lopettaa missä vaiheessa tahansa painamalla oikean yläkulman ruksia.
