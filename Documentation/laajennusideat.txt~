@@ -1,0 +1,5 @@
+Ohjelmaa voisi laajentaa esimerkiksi lisäämällä rahapeli-kuviot ohjelmaan. Jokaisella pelaajalla olisi siis tietty määrä rahaa jota voisi käyttää panoksen asettamiseen kädelle. 
+
+Toinen asia jonka voisi tehdä, on se, että kun pelaajalla on kädessään pari esim 7-7 niin ne voisi jakaa kahteen eri käteen kuten normi blackjackissä. (SPLIT)
+
+Kolmas idea on, että pelaajat voisivat pelata vain jakajaa vastaa kuten normiblackjackissä, tällöin muiden pelaajien kädet olisivat pelaajalle merkityksettömiä ja voittaminen määräytyisi sen perusteella, voittiko pelaaja jakajan käden. Tällöin voittajia voisi olla useita.

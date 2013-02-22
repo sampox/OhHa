@@ -1,6 +1,6 @@
 Aihe: Blackjack / Ventti  korttipeli
 
-Toteutetaan korttipeli, jossa pelaajalle/pelaajille(max 8) ja jakajalle(HOUSE) jaetaan kaksi korttia. Sen jälkeen kysytään haluaako pelaaja(t) lisää kortteja vai pidättäytyä kädessään. Tavoitteena on saavuttaa korteilla yhteissumma 21, ja/tai voittaa tietokoneen eli "jakajan" käsi. Jos summa menee yli 21 pelaaja häviää. pelaajan pysyttyä kädessään jakaja voi ottaa lisää kortteja omaan käteensä ja yrittää voittaa pelaajan käden summan.
+Toteutetaan korttipeli, jossa pelaajalle/pelaajille(max 8) ja jakajalle(HOUSE) jaetaan kaksi korttia. Sen jälkeen kysytään haluaako pelaaja(t) lisää kortteja vai pidättäytyä kädessään. Tavoitteena on saavuttaa korteilla yhteissumma 21, ja/tai voittaa tietokoneen eli "jakajan" (ja muiden pelaajien) käsi. Jos summa menee yli 21 pelaaja häviää. pelaajan pysyttyä kädessään jakaja voi ottaa lisää kortteja omaan käteensä ja yrittää voittaa korkeimman laillisen käden saavuttaneen pelaajan käden summan.
 
 Tässä pelissä korttien arvot ovat seuraavasti: Kuvakortit=10, Ässä=11/1, Muut=kortin arvo. Täten arvo ei heti jaon jälkeen voi olla yli 21.
 

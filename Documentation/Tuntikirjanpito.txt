@@ -49,3 +49,6 @@ Korjasin bugin ohjelman Play-luokasta ja GUI:sta.
 
 To 21.2.-13 16.30-16.40
 Keksin laajennusideoita peliin.
+
+Pe 22.2.-13 02.15-02.25
+Poistin vanhat versiot sekvenssi- ja luokkakaavioista Documentationista (koska niitä oli useita ja ne olivat turhia). Tarkistin, että dokumentaatio on ajan tasalla.
